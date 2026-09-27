@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.cache/
+artifacts/
+docs/
+public/
+package-lock.json
+next-env.d.ts

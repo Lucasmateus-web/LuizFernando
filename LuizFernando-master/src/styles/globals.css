@@ -1,0 +1,622 @@
+@import "tailwindcss" source("../");
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Brand palette - Bombeiro Civil */
+  --background: #0b0b0b;
+  --foreground: #fafafa;
+  --card: #111111;
+  --card-foreground: #fafafa;
+  --popover: #111111;
+  --popover-foreground: #fafafa;
+  --primary: #c1121f;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #fafafa;
+  --muted: #1a1a1a;
+  --muted-foreground: #a3a3a3;
+  --accent: #f77f00;
+  --accent-foreground: #000000;
+  --destructive: #c1121f;
+  --destructive-foreground: #ffffff;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #f77f00;
+  --whatsapp: #22c55e;
+  --radius: 1.5rem;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.65) 60%,
+    #000000 100%
+  );
+  --gradient-fire: linear-gradient(135deg, #c1121f 0%, #f77f00 100%);
+  --gradient-radial-glow: radial-gradient(
+    circle at 50% 50%,
+    rgba(247, 127, 0, 0.25),
+    transparent 70%
+  );
+
+  /* Shadows */
+  --shadow-glow: 0 0 40px rgba(247, 127, 0, 0.4);
+  --shadow-fire: 0 10px 40px -10px rgba(193, 18, 31, 0.6);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme inline {
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-heading: "Outfit", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Outfit", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .font-heading {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+  }
+}
+
+/* Infinite Scroll Animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 30s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 30s linear infinite;
+}
+
+.animate-scroll-left:hover,
+.animate-scroll-right:hover {
+  animation-play-state: paused;
+}
+
+/* Counter Animation */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-count {
+  animation: count-up 0.6s ease-out forwards;
+}
+
+/* Typing Effect */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@layer utilities {
+  .text-gradient-fire {
+    background: var(--gradient-fire);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glow-orange {
+    filter: drop-shadow(0 0 8px rgba(247, 127, 0, 0.7));
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-fire {
+    box-shadow: var(--shadow-fire);
+  }
+}
+
+/* Infinite marquee animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+.animate-marquee-fast {
+  animation: marquee-left 25s linear infinite;
+}
+
+.marquee-pause:hover {
+  animation-play-state: paused;
+}
+
+/* Subtitle rotation fade */
+@keyframes subtitle-fade {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll indicator */
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* Slow zoom on hover */
+.hover-zoom {
+  transition: transform 0.7s var(--transition-smooth);
+}
+.hover-zoom:hover {
+  transform: scale(1.08);
+}
+
+/* Video overlay gradient */
+.video-overlay {
+  background: var(--gradient-hero);
+}
+
+/* Welcome screen */
+@keyframes welcome-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    letter-spacing: 0.55em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.34em;
+  }
+}
+
+@keyframes welcome-text-shine {
+  from {
+    background-position: 160% center;
+  }
+  to {
+    background-position: -60% center;
+  }
+}
+
+@keyframes welcome-logo-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.982);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes welcome-logo-letter-in {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateY(14px) scale(0.985);
+    filter: blur(4px);
+  }
+  68% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes welcome-logo-letter-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+    filter: blur(4px);
+  }
+}
+
+@keyframes welcome-logo-detail-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.94);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes welcome-logo-detail-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    filter: blur(4px);
+  }
+}
+
+@keyframes welcome-logo-ambient-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scaleX(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+  }
+}
+
+@keyframes welcome-logo-ambient-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scaleX(0.82);
+  }
+}
+
+@keyframes welcome-logo-light-beam {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 740;
+  }
+  22% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -740;
+  }
+}
+
+@keyframes welcome-logo-flame-life {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.96;
+  }
+  45% {
+    transform: translateY(-3px) scale(1.035);
+    opacity: 1;
+  }
+}
+
+@keyframes welcome-logo-spark-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.65);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-22px) scale(1);
+  }
+}
+
+@keyframes welcome-logo-exit-drift {
+  from {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 10px 28px rgba(247, 127, 0, 0.08));
+  }
+  to {
+    transform: translateY(-10px) scale(0.988);
+    filter: drop-shadow(0 4px 16px rgba(247, 127, 0, 0.04));
+  }
+}
+
+@keyframes welcome-logo-sheen-in {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  22% {
+    opacity: 0.38;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(1180px);
+  }
+}
+
+@keyframes welcome-logo-sheen-out {
+  0% {
+    opacity: 0;
+    transform: translateX(1180px);
+  }
+  34% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes welcome-line-reveal {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes welcome-orb-pulse {
+  from {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+.welcome-title {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.62),
+    #ffffff,
+    #f77f00,
+    rgba(255, 255, 255, 0.76)
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    welcome-fade-up 800ms cubic-bezier(0.22, 1, 0.36, 1) both,
+    welcome-text-shine 1700ms ease-in-out 500ms both;
+}
+
+.welcome-logo {
+  animation: welcome-logo-reveal 1050ms cubic-bezier(0.16, 1, 0.3, 1) 420ms both;
+}
+
+.welcome-logo-svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 10px 28px rgba(247, 127, 0, 0.08));
+}
+
+.welcome-logo-ambient {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: welcome-logo-ambient-in 1300ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+}
+
+.welcome-logo-light-beam {
+  stroke-dasharray: 740;
+  stroke-dashoffset: 740;
+  animation: welcome-logo-light-beam 1800ms cubic-bezier(0.16, 1, 0.3, 1) 860ms both;
+}
+
+.welcome-logo-text {
+  font-family: "Plus Jakarta Sans", "Outfit", system-ui, sans-serif;
+  font-size: 154px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.welcome-logo-letter {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: welcome-logo-letter-in 980ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.welcome-logo-extinguisher,
+.welcome-logo-flame {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: welcome-logo-detail-in 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.welcome-logo-flame path {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: welcome-logo-flame-life 1550ms ease-in-out 1500ms infinite;
+}
+
+.welcome-logo-sparks circle {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: welcome-logo-spark-rise 1600ms ease-out infinite;
+}
+
+.welcome-logo-sparks circle:nth-child(1) {
+  animation-delay: 1500ms;
+}
+
+.welcome-logo-sparks circle:nth-child(2) {
+  animation-delay: 1900ms;
+}
+
+.welcome-logo-sparks circle:nth-child(3) {
+  animation-delay: 2250ms;
+}
+
+.welcome-logo-sheen {
+  animation: welcome-logo-sheen-in 1650ms cubic-bezier(0.16, 1, 0.3, 1) 1080ms both;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.welcome-logo.is-leaving .welcome-logo-svg {
+  animation: welcome-logo-exit-drift 2100ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.welcome-logo.is-leaving .welcome-logo-ambient {
+  animation-name: welcome-logo-ambient-out;
+  animation-duration: 1500ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.welcome-logo.is-leaving .welcome-logo-letter {
+  animation-name: welcome-logo-letter-out;
+  animation-duration: 1450ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.welcome-logo.is-leaving .welcome-logo-extinguisher,
+.welcome-logo.is-leaving .welcome-logo-flame {
+  animation-name: welcome-logo-detail-out;
+  animation-duration: 1550ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.welcome-logo.is-leaving .welcome-logo-flame path,
+.welcome-logo.is-leaving .welcome-logo-sparks circle {
+  animation-play-state: paused;
+}
+
+.welcome-logo.is-leaving .welcome-logo-sheen {
+  animation: welcome-logo-sheen-out 1500ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.welcome-line {
+  animation: welcome-line-reveal 800ms cubic-bezier(0.22, 1, 0.36, 1) 950ms both;
+}
+
+.welcome-orb {
+  animation: welcome-orb-pulse 2200ms ease-in-out infinite alternate;
+}
