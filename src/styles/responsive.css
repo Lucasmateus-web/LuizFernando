@@ -1,0 +1,96 @@
+/* Layout corrections only: original colours, typography, content and effects stay intact. */
+.original-header a:has(img) {
+  min-width: 0;
+}
+.original-header a > img {
+  max-width: 100%;
+}
+.original-hero {
+  height: 100svh;
+}
+.original-project-card {
+  min-height: 340px;
+}
+.original-project-modal {
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.original-project-modal aside {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1023px) {
+  .original-header a:has(img) {
+    max-width: calc(100% - 60px);
+  }
+  .original-mobile-navigation {
+    max-height: calc(100dvh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .original-mobile-navigation[inert] {
+    max-height: 0;
+  }
+  .original-project-modal > div > div {
+    min-height: 0;
+  }
+  .original-project-modal img {
+    max-height: 42svh;
+  }
+}
+@media (max-width: 639px) {
+  .original-training-card {
+    width: min(20rem, calc(100vw - 2rem));
+    height: 18rem;
+  }
+  .original-project-card {
+    min-height: 360px;
+  }
+  .original-project-modal aside {
+    padding: 1rem;
+  }
+}
+
+/* Layout and accessibility remain independent of the carousel material. */
+.original-project-card {
+  width: 100%;
+  min-width: 0;
+  min-height: 370px;
+}
+#carrossel,
+#sobre,
+#projetos,
+#contato {
+  scroll-margin-top: 112px;
+}
+.glass-modal-backdrop {
+  z-index: 60;
+}
+:where(a, button):focus-visible {
+  outline: 3px solid #ffbe80;
+  outline-offset: 4px;
+}
+.original-hero > .relative {
+  padding-top: 120px;
+  padding-bottom: 88px;
+}
+@media (max-width: 639px) {
+  .original-training-card {
+    height: 19rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  #carrossel > .space-y-2 > div {
+    overflow-x: auto;
+  }
+}

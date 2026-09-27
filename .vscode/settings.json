@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.cache": true,
+    "**/*.tsbuildinfo": true,
+    "artifacts": true
+  },
+  "search.exclude": {
+    "artifacts": true,
+    "docs/archive": true,
+    "docs/backups": true,
+    ".cache": true,
+    ".next": true
+  }
+}
